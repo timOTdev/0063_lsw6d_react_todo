@@ -45,12 +45,15 @@ class App extends React.Component {
       text: ""
     })
   }
-  
+
   handleInput = (e) => {
     e.preventDefault()
     let text = e.target.value
-    const list = this.state.list.filter(item => item.task.toLowerCase().includes(e.target.value.toLowerCase()))
-    this.setState({ text, list })
+    const list = [...this.state.list]
+    const newArr = list.filter(item => item.task.toLowerCase().includes(text))
+    console.log(newArr.length)
+
+    this.setState({ text, list: newArr }) 
   }
 
   clearCompleted = (e) => {
